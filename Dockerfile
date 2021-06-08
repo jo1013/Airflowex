@@ -26,10 +26,14 @@ sqlite3 \
 unixodbc
 
 RUN apt-get update
-RUN apt-get install mysql-server -y
 RUN apt-get upgrade -y
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+RUN apt-get install mysql-server -y
 RUN apt-get dist-upgrade -y
-RUN apt-get install postgresql postgresql-contrib -y
+RUN apt update
+RUN apt-get install postgresql-13 postgresql-contrib -y
+RUN apt install postgresql-client-13
 RUN apt-get install libmysqlclient-dev -y
 RUN apt-get install python-pip -y
 RUN apt-get install python3-pip -y
@@ -39,6 +43,7 @@ RUN apt-get install python-dev -y
 RUN pip3 install apache-airflow
 RUN pip3 install 'apache-airflow[kubernetes]'
 RUN pip3 install 'apache-airflow[postgres]'
+
 
 RUN service postgresql restart
 RUN apt install python 3.7 -y
