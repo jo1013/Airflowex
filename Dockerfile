@@ -27,12 +27,14 @@ unixodbc
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+RUN apt-get install wget -y
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN apt-get install mysql-server -y
 RUN apt-get dist-upgrade -y
-RUN apt update
-RUN apt-get install postgresql-13 postgresql-contrib -y
+RUN apt-get update
+RUN apt-get install postgresql -y
+RUN apt-get install postgresql-contrib -y
 RUN apt install postgresql-client-13
 RUN apt-get install libmysqlclient-dev -y
 RUN apt-get install python-pip -y
