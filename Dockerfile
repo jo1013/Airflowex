@@ -39,26 +39,22 @@ RUN apt-get install python-dev -y
 RUN pip3 install apache-airflow
 RUN pip3 install 'apache-airflow[kubernetes]'
 RUN pip3 install 'apache-airflow[postgres]'
-RUN apt -y install postgresql postgresql-contrib
+
+RUN service postgresql restart
 RUN apt install python 3.7 -y
 RUN pip3 install configparser 
 RUN apt-get install mysql-server
 RUN pip3 install --upgrade pip
 RUN pip3 install notebook
 RUN pip3 install --ignore-installed jupyter
+RUN apt-get install nano
+RUN apt-get install gcc
 RUN jupyter notebook --generate-config --allow-root
 RUN echo "c.NotebookApp.password = u'sha1:6a3f528eec40:6e896b6e4828f525a6e20e5411cd1c8075d68619'" >> /root/.jupyter/jupyter_notebook_config.py
 
 
 
-# dags_folder = /root/airflow/dags
-RUN dags_folder = /shared/dags
-# base_log_folder = /root/airflow/logs
-RUN base_log_folder = /shared/logs 
-# default_timezone = utc 
-RUN default_timezone = Asia/Seoul 
-# executor = SequentialExecutor 
-RUN executor = LocalExecutor
+
 
 
 EXPOSE 8888
