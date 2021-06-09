@@ -45,7 +45,8 @@ RUN apt-get install python-dev -y
 RUN pip3 install apache-airflow
 RUN pip3 install 'apache-airflow[kubernetes]'
 RUN pip3 install 'apache-airflow[postgres]'
-
+RUN apt-get install postgresql-common
+RUN apt-get install gcc
 
 RUN service postgresql restart
 RUN apt install python 3.7 -y
@@ -54,6 +55,7 @@ RUN apt-get install mysql-server
 RUN pip3 install --upgrade pip
 RUN pip3 install notebook
 RUN pip3 install --ignore-installed jupyter
+RUN pip3 install airflow
 RUN apt-get install nano
 RUN apt-get install gcc
 RUN jupyter notebook --generate-config --allow-root
