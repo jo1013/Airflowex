@@ -4,6 +4,8 @@
 
 
 $ docker run -it -d -p [연결로컬포트]:[연결도커포트] -v ~/Airflow:/shared -e LC_ALL=C.UTF-8 --name [설정할이름] [dockerhubid]/[imagename]:[tag]
+
+
 $ docker run -it -d -p 8090:8080 -v ~/Airflow:/shared -e LC_ALL=C.UTF-8 --name airflow4 jo1013/airflowex:0.02
 
 
